@@ -1,0 +1,486 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="600" viewBox="0 0 1100 600">
+
+  <defs>
+
+    <linearGradient id="background" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#111827"/>
+    </linearGradient>
+
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="10" flood-opacity="0.25"/>
+    </filter>
+
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#93c5fd"/>
+    </marker>
+
+    <marker id="greenArrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#86efac"/>
+    </marker>
+
+    <style>
+
+      .title {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 27px;
+        font-weight: 700;
+        fill: #f8fafc;
+      }
+
+      .label {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 16px;
+        font-weight: 700;
+        fill: #f8fafc;
+        text-anchor: middle;
+      }
+
+      .sub {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 12px;
+        font-weight: 400;
+        fill: #cbd5e1;
+        text-anchor: middle;
+      }
+
+      .small {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 11px;
+        font-weight: 600;
+        fill: #cbd5e1;
+        text-anchor: middle;
+      }
+
+      .box {
+        stroke: #475569;
+        stroke-width: 2;
+        rx: 18;
+        filter: url(#shadow);
+      }
+
+      .flow {
+        fill: none;
+        stroke: #93c5fd;
+        stroke-width: 4;
+        stroke-dasharray: 10 10;
+        marker-end: url(#arrow);
+        animation: move 1.1s linear infinite;
+      }
+
+      .return-flow {
+        fill: none;
+        stroke: #86efac;
+        stroke-width: 4;
+        stroke-dasharray: 10 10;
+        marker-end: url(#greenArrow);
+        animation: moveReverse 1.1s linear infinite;
+      }
+
+      .pulse {
+        animation: pulse 2s ease-in-out infinite;
+        transform-box: fill-box;
+        transform-origin: center;
+      }
+
+      @keyframes move {
+        from {
+          stroke-dashoffset: 0;
+        }
+
+        to {
+          stroke-dashoffset: -40;
+        }
+      }
+
+      @keyframes moveReverse {
+        from {
+          stroke-dashoffset: 0;
+        }
+
+        to {
+          stroke-dashoffset: 40;
+        }
+      }
+
+      @keyframes pulse {
+        0%, 100% {
+          opacity: 1;
+        }
+
+        50% {
+          opacity: 0.65;
+        }
+      }
+
+    </style>
+
+  </defs>
+
+
+  <!-- Background -->
+
+  <rect
+    width="1100"
+    height="600"
+    rx="28"
+    fill="url(#background)"
+  />
+
+
+  <!-- Title -->
+
+  <text
+    x="550"
+    y="52"
+    class="title"
+    text-anchor="middle"
+  >
+    Mental Health Score Prediction — Serverless Architecture
+  </text>
+
+
+  <!-- Browser -->
+
+  <g>
+
+    <rect
+      x="45"
+      y="205"
+      width="170"
+      height="115"
+      class="box"
+      fill="#312e81"
+    />
+
+    <text
+      x="130"
+      y="245"
+      class="label"
+    >
+      🌐 Browser
+    </text>
+
+    <text
+      x="130"
+      y="270"
+      class="sub"
+    >
+      Interactive UI
+    </text>
+
+    <text
+      x="130"
+      y="291"
+      class="sub"
+    >
+      User input
+    </text>
+
+  </g>
+
+
+  <!-- AWS Lambda -->
+
+  <g>
+
+    <rect
+      x="300"
+      y="145"
+      width="265"
+      height="235"
+      class="box"
+      fill="#7c2d12"
+    />
+
+    <text
+      x="432"
+      y="182"
+      class="label"
+    >
+      ⚡ AWS Lambda
+    </text>
+
+    <text
+      x="432"
+      y="203"
+      class="sub"
+    >
+      Function URL
+    </text>
+
+
+    <!-- FastAPI -->
+
+    <rect
+      x="330"
+      y="225"
+      width="205"
+      height="57"
+      rx="12"
+      fill="#0f766e"
+      stroke="#5eead4"
+    />
+
+    <text
+      x="432"
+      y="250"
+      class="label"
+      font-size="14"
+    >
+      FastAPI
+    </text>
+
+    <text
+      x="432"
+      y="268"
+      class="sub"
+    >
+      API + static frontend
+    </text>
+
+
+    <!-- Docker -->
+
+    <rect
+      x="330"
+      y="298"
+      width="205"
+      height="57"
+      rx="12"
+      fill="#92400e"
+      stroke="#fbbf24"
+    />
+
+    <text
+      x="432"
+      y="323"
+      class="label"
+      font-size="14"
+    >
+      Docker Container
+    </text>
+
+    <text
+      x="432"
+      y="341"
+      class="sub"
+    >
+      Mangum adapter
+    </text>
+
+  </g>
+
+
+  <!-- Amazon ECR -->
+
+  <g class="pulse">
+
+    <rect
+      x="665"
+      y="105"
+      width="180"
+      height="95"
+      class="box"
+      fill="#9a3412"
+    />
+
+    <text
+      x="755"
+      y="140"
+      class="label"
+    >
+      📦 Amazon ECR
+    </text>
+
+    <text
+      x="755"
+      y="164"
+      class="sub"
+    >
+      Docker image
+    </text>
+
+    <text
+      x="755"
+      y="182"
+      class="sub"
+    >
+      Container registry
+    </text>
+
+  </g>
+
+
+  <!-- ML Engine -->
+
+  <g>
+
+    <rect
+      x="650"
+      y="255"
+      width="205"
+      height="175"
+      class="box"
+      fill="#14532d"
+    />
+
+    <text
+      x="752"
+      y="290"
+      class="label"
+    >
+      🧠 ML Inference
+    </text>
+
+
+    <!-- Pandas -->
+
+    <rect
+      x="675"
+      y="310"
+      width="155"
+      height="38"
+      rx="10"
+      fill="#166534"
+    />
+
+    <text
+      x="752"
+      y="335"
+      class="small"
+    >
+      Pandas preprocessing
+    </text>
+
+
+    <!-- Scikit Learn -->
+
+    <rect
+      x="675"
+      y="360"
+      width="155"
+      height="38"
+      rx="10"
+      fill="#166534"
+    />
+
+    <text
+      x="752"
+      y="385"
+      class="small"
+    >
+      Scikit-Learn pipeline
+    </text>
+
+
+    <text
+      x="752"
+      y="415"
+      class="sub"
+    >
+      Mental health score
+    </text>
+
+  </g>
+
+
+  <!-- Request: Browser → Lambda -->
+
+  <path
+    d="M215 262 C250 262 265 262 300 262"
+    class="flow"
+  />
+
+  <text
+    x="257"
+    y="248"
+    class="small"
+  >
+    HTTP request
+  </text>
+
+
+  <!-- Lambda → ML -->
+
+  <path
+    d="M565 285 C605 285 615 342 650 342"
+    class="flow"
+  />
+
+  <text
+    x="607"
+    y="316"
+    class="small"
+  >
+    prediction
+  </text>
+
+
+  <!-- ECR → Lambda -->
+
+  <path
+    d="M665 160 C600 160 590 220 535 250"
+    class="flow"
+  />
+
+  <text
+    x="610"
+    y="174"
+    class="small"
+  >
+    image pull
+  </text>
+
+
+  <!-- ML → Lambda -->
+
+  <path
+    d="M650 390 C605 390 600 330 565 330"
+    class="return-flow"
+  />
+
+  <text
+    x="608"
+    y="408"
+    class="small"
+  >
+    score
+  </text>
+
+
+  <!-- Lambda → Browser -->
+
+  <path
+    d="M300 305 C265 305 250 305 215 305"
+    class="return-flow"
+  />
+
+  <text
+    x="257"
+    y="326"
+    class="small"
+  >
+    JSON / HTML response
+  </text>
+
+
+  <!-- Footer -->
+
+  <text
+    x="550"
+    y="525"
+    class="sub"
+  >
+    Animated request flow • Containerized FastAPI • Serverless ML inference
+  </text>
+
+  <text
+    x="550"
+    y="548"
+    class="sub"
+  >
+    Amazon ECR → AWS Lambda → FastAPI → Scikit-Learn
+  </text>
+
+</svg>

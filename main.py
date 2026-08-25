@@ -1,3 +1,5 @@
+from mangum import Mangum
+from fastapi.staticfiles import StaticFiles
 import joblib
 import pandas as pd
 from fastapi import FastAPI
@@ -35,18 +37,16 @@ class StudentData(BaseModel):
         Stress_Level                  :Literal['Medium', 'Low', 'Very High', 'High']
 
 
+
 # Describe what we send back
 class predictionResponse(BaseModel):
      predicted_mental_health_score:float
      
-
-@app.get('/')
-def greet():
-    return {'Welcome to my app'}
-
 top_countries = [
         'Other','India','USA','Canada','Australia','UK','Germany','Mexico','Turkey','France'
          ]
+
+
 
 @app.post('/predict', response_model=predictionResponse)
 def predict(data: StudentData):
@@ -70,3 +70,9 @@ def predict(data: StudentData):
 
     prediction : float = model.predict(input_row)[0]   #....we passing 0th dict in input_row to model for prediction
     return predictionResponse(predicted_mental_health_score=round(prediction,2))
+
+
+app.mount("/", StaticFiles(directory="static", html=True), name="static")
+
+
+handler = Mangum(app)
