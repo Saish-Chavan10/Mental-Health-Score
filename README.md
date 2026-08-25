@@ -1,6 +1,16 @@
 # 🧠 Mental Health Score Prediction App
 
+
+[![Python](https://img.shields.io/badge/Python-3.10%2B-blue?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
+[![FastAPI](https://img.shields.io/badge/FastAPI-0.100%2B-005571?style=for-the-badge&logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
+[![Scikit-Learn](https://img.shields.io/badge/Scikit--Learn-F7931E?style=for-the-badge&logo=scikit-learn&logoColor=white)](https://scikit-learn.org/)
+[![Docker](https://img.shields.io/badge/Docker-2CA5E0?style=for-the-badge&logo=docker&logoColor=white)](https://www.docker.com/)
+[![AWS Lambda](https://img.shields.io/badge/AWS-Lambda-FF9900?style=for-the-badge&logo=amazonaws&logoColor=white)](https://aws.amazon.com/lambda/)
+
 A full-stack machine learning web application that predicts mental health scores based on user lifestyle data. Built with **FastAPI**, **Pandas**, and **Scikit-Learn**, and deployed serverlessly using **AWS Lambda** and **Amazon ECR**.
+
+
+[🚀 Live Demo](#-live-demo) • [📐 Architecture](#-system-architecture) • [📦 Deployment Guide](#-deployment-guide)
 
 ---
 
@@ -18,6 +28,38 @@ A full-stack machine learning web application that predicts mental health scores
 * **AWS Lambda & Mangum:** Serverless execution environment.
 
 ---
+
+## 📐 System Architecture
+
+```mermaid
+flowchart TD
+    subgraph Client ["Client Layer"]
+        A[User / Browser] -->|1. Triggers Function URL| B(HTTP Request / UI Action)
+    end
+
+    subgraph AWS_Lambda ["AWS Serverless Compute (Scale-to-Zero)"]
+        B -->|2. Event Invocation| C{Container State?}
+        C -->|Cold Start / Idle| D[Pull 2GB Docker Image from ECR]
+        C -->|Warm Start / Active| E[Reuse Active Execution Context]
+        D --> F[Initialize FastAPI & Load .pkl Pipeline]
+        E --> F
+        F --> G[Serve Frontend UI & Route API Endpoints]
+    end
+
+    subgraph ML_Engine ["Inference Engine"]
+        G -->|3. Send POST Data| H[Pandas Feature Preprocessing]
+        H -->|4. Vectorize Data| I[Scikit-Learn Pipeline Inference]
+        I -->|5. Compute Score| G
+    end
+
+    G -->|6. JSON Prediction / HTML Response| A
+
+    style A fill:#4F46E5,stroke:#fff,stroke-width:2px,color:#fff
+    style C fill:#F59E0B,stroke:#fff,stroke-width:2px,color:#fff
+    style F fill:#3B82F6,stroke:#fff,stroke-width:2px,color:#fff
+    style I fill:#10B981,stroke:#fff,stroke-width:2px,color:#fff
+```
+
 
 ## 📁 Project Structure
 ```text
