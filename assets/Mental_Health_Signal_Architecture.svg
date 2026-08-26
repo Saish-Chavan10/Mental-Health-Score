@@ -1,728 +1,1226 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000">
+<svg xmlns="http://www.w3.org/2000/svg"
+     width="1600"
+     height="1000"
+     viewBox="0 0 1600 1000">
+
   <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#07100f"/>
-      <stop offset="0.55" stop-color="#0b1514"/>
-      <stop offset="1" stop-color="#050908"/>
+
+    <!-- Dark background -->
+    <linearGradient id="background"
+                    x1="0"
+                    y1="0"
+                    x2="1"
+                    y2="1">
+      <stop offset="0%" stop-color="#06100E"/>
+      <stop offset="55%" stop-color="#0A1513"/>
+      <stop offset="100%" stop-color="#030706"/>
     </linearGradient>
 
-    <linearGradient id="mint" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0" stop-color="#20d6a0"/>
-      <stop offset="1" stop-color="#7af0c9"/>
-    </linearGradient>
-
+    <!-- Glow -->
     <filter id="glow">
-      <feGaussianBlur stdDeviation="7" result="blur"/>
+      <feGaussianBlur stdDeviation="5" result="blur"/>
       <feMerge>
         <feMergeNode in="blur"/>
         <feMergeNode in="SourceGraphic"/>
       </feMerge>
     </filter>
 
-    <marker id="arrowMint" markerWidth="10" markerHeight="10"
-            refX="9" refY="5" orient="auto">
-      <path d="M0,0 L10,5 L0,10 Z" fill="#35e0ae"/>
+    <!-- Green arrow -->
+    <marker id="arrowGreen"
+            markerWidth="10"
+            markerHeight="10"
+            refX="9"
+            refY="5"
+            orient="auto">
+      <path d="M0 0 L10 5 L0 10 Z"
+            fill="#35E0AE"/>
     </marker>
 
-    <marker id="arrowPurple" markerWidth="10" markerHeight="10"
-            refX="9" refY="5" orient="auto">
-      <path d="M0,0 L10,5 L0,10 Z" fill="#b477ff"/>
+    <!-- Purple arrow -->
+    <marker id="arrowPurple"
+            markerWidth="10"
+            markerHeight="10"
+            refX="9"
+            refY="5"
+            orient="auto">
+      <path d="M0 0 L10 5 L0 10 Z"
+            fill="#B477FF"/>
     </marker>
 
-    <marker id="arrowOrange" markerWidth="10" markerHeight="10"
-            refX="9" refY="5" orient="auto">
-      <path d="M0,0 L10,5 L0,10 Z" fill="#ffad38"/>
+    <!-- Orange arrow -->
+    <marker id="arrowOrange"
+            markerWidth="10"
+            markerHeight="10"
+            refX="9"
+            refY="5"
+            orient="auto">
+      <path d="M0 0 L10 5 L0 10 Z"
+            fill="#FFB340"/>
     </marker>
 
-    <style>
-      .title {
-        font: 700 38px Arial, sans-serif;
-        fill: #f4f7f5;
-      }
+    <!-- Blue arrow -->
+    <marker id="arrowBlue"
+            markerWidth="10"
+            markerHeight="10"
+            refX="9"
+            refY="5"
+            orient="auto">
+      <path d="M0 0 L10 5 L0 10 Z"
+            fill="#4DA3FF"/>
+    </marker>
 
-      .subtitle {
-        font: 400 19px Arial, sans-serif;
-        fill: #9daaa6;
-      }
-
-      .label {
-        font: 700 21px Arial, sans-serif;
-      }
-
-      .small {
-        font: 400 15px Arial, sans-serif;
-        fill: #aab6b2;
-      }
-
-      .tiny {
-        font: 400 13px Arial, sans-serif;
-        fill: #84928d;
-      }
-
-      .card {
-        fill: #0c1312;
-        stroke: #31413d;
-        stroke-width: 1.5;
-      }
-
-      .node {
-        fill: #0b1211;
-        stroke-width: 2;
-      }
-
-      .flow {
-        fill: none;
-        stroke-width: 3;
-        stroke-linecap: round;
-        stroke-dasharray: 9 12;
-      }
-
-      .dash {
-        animation: dash 1.6s linear infinite;
-      }
-
-      .dashSlow {
-        animation: dash 2.8s linear infinite;
-      }
-
-      .pulse {
-        animation: pulse 2s ease-in-out infinite;
-        transform-box: fill-box;
-        transform-origin: center;
-      }
-
-      .float {
-        animation: float 3s ease-in-out infinite;
-      }
-
-      .score {
-        animation: scorePulse 2.2s ease-in-out infinite;
-      }
-
-      @keyframes dash {
-        to {
-          stroke-dashoffset: -42;
-        }
-      }
-
-      @keyframes pulse {
-        0%, 100% {
-          opacity: .65;
-          transform: scale(1);
-        }
-        50% {
-          opacity: 1;
-          transform: scale(1.035);
-        }
-      }
-
-      @keyframes float {
-        0%, 100% {
-          transform: translateY(0);
-        }
-        50% {
-          transform: translateY(-6px);
-        }
-      }
-
-      @keyframes scorePulse {
-        0%, 100% {
-          opacity: .75;
-        }
-        50% {
-          opacity: 1;
-          filter: url(#glow);
-        }
-      }
-    </style>
   </defs>
 
+
+  <!-- ========================================================= -->
   <!-- BACKGROUND -->
-  <rect width="1600" height="1000" fill="url(#bg)"/>
+  <!-- ========================================================= -->
 
-  <!-- GRID -->
-  <g opacity=".07">
-    <path d="M0 100H1600"/>
-    <path d="M0 200H1600"/>
-    <path d="M0 300H1600"/>
-    <path d="M0 400H1600"/>
-    <path d="M0 500H1600"/>
-    <path d="M0 600H1600"/>
-    <path d="M0 700H1600"/>
-    <path d="M0 800H1600"/>
-    <path d="M0 900H1600"/>
+  <rect x="0"
+        y="0"
+        width="1600"
+        height="1000"
+        fill="url(#background)"/>
 
-    <path d="M100 0V1000"/>
-    <path d="M300 0V1000"/>
-    <path d="M500 0V1000"/>
-    <path d="M700 0V1000"/>
-    <path d="M900 0V1000"/>
-    <path d="M1100 0V1000"/>
-    <path d="M1300 0V1000"/>
-    <path d="M1500 0V1000"/>
+
+  <!-- Subtle grid -->
+
+  <g stroke="#FFFFFF"
+     stroke-opacity="0.045"
+     stroke-width="1">
+
+    <path d="M0 100 H1600"/>
+    <path d="M0 200 H1600"/>
+    <path d="M0 300 H1600"/>
+    <path d="M0 400 H1600"/>
+    <path d="M0 500 H1600"/>
+    <path d="M0 600 H1600"/>
+    <path d="M0 700 H1600"/>
+    <path d="M0 800 H1600"/>
+    <path d="M0 900 H1600"/>
+
+    <path d="M100 0 V1000"/>
+    <path d="M300 0 V1000"/>
+    <path d="M500 0 V1000"/>
+    <path d="M700 0 V1000"/>
+    <path d="M900 0 V1000"/>
+    <path d="M1100 0 V1000"/>
+    <path d="M1300 0 V1000"/>
+    <path d="M1500 0 V1000"/>
+
   </g>
 
+
+  <!-- ========================================================= -->
   <!-- TITLE -->
-  <text x="800" y="62" text-anchor="middle" class="title">
-    <tspan fill="#38ddb0">Mental Health Signal</tspan>
-    <tspan> — Architecture Overview</tspan>
+  <!-- ========================================================= -->
+
+  <text x="800"
+        y="62"
+        text-anchor="middle"
+        font-family="Arial, Helvetica, sans-serif"
+        font-size="38"
+        font-weight="700"
+        fill="#F4F7F5">
+
+    <tspan fill="#35E0AE">
+      Mental Health Signal
+    </tspan>
+
+    <tspan fill="#F4F7F5">
+      — Architecture
+    </tspan>
+
   </text>
 
-  <text x="800" y="94" text-anchor="middle" class="subtitle">
-    Serverless ML application • real-time prediction • scale-to-zero deployment
+
+  <text x="800"
+        y="94"
+        text-anchor="middle"
+        font-family="Arial, Helvetica, sans-serif"
+        font-size="18"
+        fill="#9DAAA6">
+
+    Serverless ML • real-time inference • scale-to-zero
+
   </text>
 
-  <!-- USER -->
-  <g class="float">
-    <rect x="55" y="150" width="245" height="190"
-          rx="20" class="card" stroke="#25d9a4"/>
 
-    <circle cx="177" cy="205" r="34"
-            fill="#0d3028" stroke="#28d9a6" stroke-width="2"/>
+  <!-- ========================================================= -->
+  <!-- USER / BROWSER -->
+  <!-- ========================================================= -->
 
-    <circle cx="177" cy="194" r="10" fill="#35e0ae"/>
+  <rect x="55"
+        y="150"
+        width="245"
+        height="190"
+        rx="20"
+        fill="#0C1513"
+        stroke="#35E0AE"
+        stroke-width="2"/>
 
-    <path d="M157 222 Q177 202 197 222"
-          fill="none"
-          stroke="#35e0ae"
-          stroke-width="6"
-          stroke-linecap="round"/>
 
-    <text x="177" y="264"
-          text-anchor="middle"
-          class="label"
-          fill="#35e0ae">
-      User / Browser
-    </text>
+  <circle cx="177"
+          cy="205"
+          r="34"
+          fill="#10352D"
+          stroke="#35E0AE"
+          stroke-width="2"/>
 
-    <text x="177" y="290"
-          text-anchor="middle"
-          class="small">
-      Fills wellness form
-    </text>
 
-    <text x="177" y="312"
-          text-anchor="middle"
-          class="small">
-      and submits HTTPS request
-    </text>
-  </g>
+  <!-- User icon -->
 
+  <circle cx="177"
+          cy="195"
+          r="10"
+          fill="#35E0AE"/>
+
+  <path d="M157 222 Q177 202 197 222"
+        fill="none"
+        stroke="#35E0AE"
+        stroke-width="6"
+        stroke-linecap="round"/>
+
+
+  <text x="177"
+        y="264"
+        text-anchor="middle"
+        font-family="Arial, Helvetica, sans-serif"
+        font-size="21"
+        font-weight="700"
+        fill="#35E0AE">
+
+    User / Browser
+
+  </text>
+
+
+  <text x="177"
+        y="291"
+        text-anchor="middle"
+        font-family="Arial, Helvetica, sans-serif"
+        font-size="15"
+        fill="#AAB6B2">
+
+    Fills wellness form
+
+  </text>
+
+
+  <text x="177"
+        y="313"
+        text-anchor="middle"
+        font-family="Arial, Helvetica, sans-serif"
+        font-size="15"
+        fill="#AAB6B2">
+
+    Submits HTTPS request
+
+  </text>
+
+
+  <!-- ========================================================= -->
   <!-- LAMBDA FUNCTION URL -->
-  <g>
-    <rect x="380" y="150" width="300" height="190"
-          rx="20" class="card" stroke="#aa68ff"/>
+  <!-- ========================================================= -->
 
-    <circle cx="530" cy="205" r="35"
-            fill="#20122f"
-            stroke="#b477ff"
-            stroke-width="2"/>
+  <rect x="380"
+        y="150"
+        width="300"
+        height="190"
+        rx="20"
+        fill="#0C1513"
+        stroke="#B477FF"
+        stroke-width="2"/>
 
-    <path d="M511 205h38
-             M530 186v38
-             M516 192l28 26
-             M544 192l-28 26"
-          stroke="#c59cff"
-          stroke-width="3"
-          fill="none"/>
 
-    <text x="530" y="264"
-          text-anchor="middle"
-          class="label"
-          fill="#c59cff">
-      AWS Lambda Function URL
-    </text>
+  <circle cx="530"
+          cy="205"
+          r="35"
+          fill="#241536"
+          stroke="#B477FF"
+          stroke-width="2"/>
 
-    <text x="530" y="291"
-          text-anchor="middle"
-          class="small">
-      Public HTTPS endpoint
-    </text>
 
-    <text x="530" y="314"
-          text-anchor="middle"
-          class="small">
-      No always-on server required
-    </text>
-  </g>
+  <!-- API icon -->
 
-  <!-- LAMBDA -->
-  <g>
-    <rect x="760" y="150" width="300" height="190"
-          rx="20" class="card" stroke="#ffae39"/>
+  <path d="M511 205 H549"
+        stroke="#D0A8FF"
+        stroke-width="3"
+        fill="none"/>
 
-    <circle cx="910" cy="205" r="35"
-            fill="#34200b"
-            stroke="#ffae39"
-            stroke-width="2"/>
+  <path d="M530 186 V224"
+        stroke="#D0A8FF"
+        stroke-width="3"
+        fill="none"/>
 
-    <path d="M910 181
-             L934 194
-             L934 220
-             L910 233
-             L886 220
-             L886 194 Z"
-          fill="none"
-          stroke="#ffc76d"
-          stroke-width="4"/>
+  <path d="M516 192 L544 218"
+        stroke="#D0A8FF"
+        stroke-width="3"
+        fill="none"/>
 
-    <path d="M898 198h24v18h-24z"
-          fill="none"
-          stroke="#ffc76d"
-          stroke-width="3"/>
+  <path d="M544 192 L516 218"
+        stroke="#D0A8FF"
+        stroke-width="3"
+        fill="none"/>
 
-    <text x="910" y="264"
-          text-anchor="middle"
-          class="label"
-          fill="#ffc76d">
-      AWS Lambda
-    </text>
 
-    <text x="910" y="291"
-          text-anchor="middle"
-          class="small">
-      Serverless compute
-    </text>
+  <text x="530"
+        y="264"
+        text-anchor="middle"
+        font-family="Arial, Helvetica, sans-serif"
+        font-size="20"
+        font-weight="700"
+        fill="#D0A8FF">
 
-    <text x="910" y="314"
-          text-anchor="middle"
-          class="small">
-      Auto-scale • pay per request
-    </text>
-  </g>
+    Lambda Function URL
 
-  <!-- ECR -->
-  <g class="float">
-    <rect x="1140" y="150" width="300" height="190"
-          rx="20" class="card" stroke="#4da3ff"/>
+  </text>
 
-    <circle cx="1290" cy="205" r="35"
-            fill="#0d2035"
-            stroke="#4da3ff"
-            stroke-width="2"/>
 
-    <path d="M1272 190h36v30h-36z
-             M1277 184h26
-             M1280 198h20
-             M1280 207h20"
-          fill="none"
-          stroke="#6cb8ff"
-          stroke-width="3"/>
+  <text x="530"
+        y="291"
+        text-anchor="middle"
+        font-family="Arial, Helvetica, sans-serif"
+        font-size="15"
+        fill="#AAB6B2">
 
-    <text x="1290" y="264"
-          text-anchor="middle"
-          class="label"
-          fill="#6cb8ff">
-      Amazon ECR
-    </text>
+    Public HTTPS endpoint
 
-    <text x="1290" y="291"
-          text-anchor="middle"
-          class="small">
-      Private container registry
-    </text>
+  </text>
 
-    <text x="1290" y="314"
-          text-anchor="middle"
-          class="small">
-      Stores Docker image
-    </text>
-  </g>
 
-  <!-- TOP FLOW -->
+  <text x="530"
+        y="313"
+        text-anchor="middle"
+        font-family="Arial, Helvetica, sans-serif"
+        font-size="15"
+        fill="#AAB6B2">
+
+    No always-on server
+
+  </text>
+
+
+  <!-- ========================================================= -->
+  <!-- AWS LAMBDA -->
+  <!-- ========================================================= -->
+
+  <rect x="760"
+        y="150"
+        width="300"
+        height="190"
+        rx="20"
+        fill="#0C1513"
+        stroke="#FFB340"
+        stroke-width="2"/>
+
+
+  <circle cx="910"
+          cy="205"
+          r="35"
+          fill="#36210B"
+          stroke="#FFB340"
+          stroke-width="2"/>
+
+
+  <!-- Lambda container icon -->
+
+  <path d="M910 181
+           L934 194
+           V220
+           L910 233
+           L886 220
+           V194
+           Z"
+        fill="none"
+        stroke="#FFC86F"
+        stroke-width="4"/>
+
+
+  <rect x="898"
+        y="198"
+        width="24"
+        height="18"
+        fill="none"
+        stroke="#FFC86F"
+        stroke-width="3"/>
+
+
+  <text x="910"
+        y="264"
+        text-anchor="middle"
+        font-family="Arial, Helvetica, sans-serif"
+        font-size="21"
+        font-weight="700"
+        fill="#FFC86F">
+
+    AWS Lambda
+
+  </text>
+
+
+  <text x="910"
+        y="291"
+        text-anchor="middle"
+        font-family="Arial, Helvetica, sans-serif"
+        font-size="15"
+        fill="#AAB6B2">
+
+    Serverless compute
+
+  </text>
+
+
+  <text x="910"
+        y="313"
+        text-anchor="middle"
+        font-family="Arial, Helvetica, sans-serif"
+        font-size="15"
+        fill="#AAB6B2">
+
+    Auto-scale • pay per request
+
+  </text>
+
+
+  <!-- ========================================================= -->
+  <!-- AMAZON ECR -->
+  <!-- ========================================================= -->
+
+  <rect x="1140"
+        y="150"
+        width="300"
+        height="190"
+        rx="20"
+        fill="#0C1513"
+        stroke="#4DA3FF"
+        stroke-width="2"/>
+
+
+  <circle cx="1290"
+          cy="205"
+          r="35"
+          fill="#0D2138"
+          stroke="#4DA3FF"
+          stroke-width="2"/>
+
+
+  <!-- Registry icon -->
+
+  <rect x="1272"
+        y="190"
+        width="36"
+        height="30"
+        fill="none"
+        stroke="#75BDFF"
+        stroke-width="3"/>
+
+  <path d="M1277 184 H1303"
+        stroke="#75BDFF"
+        stroke-width="3"/>
+
+  <path d="M1280 198 H1300"
+        stroke="#75BDFF"
+        stroke-width="3"/>
+
+  <path d="M1280 207 H1300"
+        stroke="#75BDFF"
+        stroke-width="3"/>
+
+
+  <text x="1290"
+        y="264"
+        text-anchor="middle"
+        font-family="Arial, Helvetica, sans-serif"
+        font-size="21"
+        font-weight="700"
+        fill="#75BDFF">
+
+    Amazon ECR
+
+  </text>
+
+
+  <text x="1290"
+        y="291"
+        text-anchor="middle"
+        font-family="Arial, Helvetica, sans-serif"
+        font-size="15"
+        fill="#AAB6B2">
+
+    Private container registry
+
+  </text>
+
+
+  <text x="1290"
+        y="313"
+        text-anchor="middle"
+        font-family="Arial, Helvetica, sans-serif"
+        font-size="15"
+        fill="#AAB6B2">
+
+    Stores Docker image
+
+  </text>
+
+
+  <!-- ========================================================= -->
+  <!-- TOP DATA FLOW -->
+  <!-- ========================================================= -->
+
   <path d="M300 245 H380"
-        class="flow dash"
-        stroke="#35e0ae"
-        marker-end="url(#arrowMint)"/>
+        fill="none"
+        stroke="#35E0AE"
+        stroke-width="3"
+        stroke-dasharray="9 12"
+        marker-end="url(#arrowGreen)"/>
+
 
   <path d="M680 245 H760"
-        class="flow dash"
-        stroke="#b477ff"
+        fill="none"
+        stroke="#B477FF"
+        stroke-width="3"
+        stroke-dasharray="9 12"
         marker-end="url(#arrowPurple)"/>
 
+
   <path d="M1060 245 H1140"
-        class="flow dashSlow"
-        stroke="#ffad38"
+        fill="none"
+        stroke="#FFB340"
+        stroke-width="3"
+        stroke-dasharray="9 12"
         marker-end="url(#arrowOrange)"/>
 
-  <!-- ANIMATED PACKETS -->
-  <circle r="6" fill="#7af0c9" filter="url(#glow)">
+
+  <!-- Animated request particles -->
+
+  <circle r="6"
+          fill="#7AF0C9"
+          filter="url(#glow)">
+
     <animateMotion
-      dur="1.6s"
+      dur="1.5s"
       repeatCount="indefinite"
       path="M300 245 H380"/>
+
   </circle>
 
-  <circle r="6" fill="#c59cff" filter="url(#glow)">
+
+  <circle r="6"
+          fill="#D0A8FF"
+          filter="url(#glow)">
+
     <animateMotion
-      dur="1.6s"
+      dur="1.5s"
       repeatCount="indefinite"
       path="M680 245 H760"/>
+
   </circle>
 
-  <circle r="6" fill="#ffc76d" filter="url(#glow)">
+
+  <circle r="6"
+          fill="#FFC86F"
+          filter="url(#glow)">
+
     <animateMotion
-      dur="2s"
+      dur="1.8s"
       repeatCount="indefinite"
       path="M1060 245 H1140"/>
+
   </circle>
 
-  <!-- LAMBDA EXECUTION AREA -->
-  <rect x="205" y="410"
+
+  <!-- ========================================================= -->
+  <!-- LAMBDA EXECUTION ENVIRONMENT -->
+  <!-- ========================================================= -->
+
+  <rect x="205"
+        y="410"
         width="1190"
         height="350"
         rx="28"
-        fill="#09100f"
-        stroke="#ffad38"
+        fill="#080F0E"
+        stroke="#FFB340"
         stroke-width="2"
         stroke-dasharray="10 8"/>
 
-  <text x="800" y="445"
+
+  <text x="800"
+        y="445"
         text-anchor="middle"
-        class="label"
-        fill="#ffbd55">
-    Inside AWS Lambda Execution Environment
+        font-family="Arial, Helvetica, sans-serif"
+        font-size="21"
+        font-weight="700"
+        fill="#FFC86F">
+
+    AWS Lambda Execution Environment
+
   </text>
 
-  <!-- DOCKER -->
-  <rect x="245" y="475"
+
+  <!-- ========================================================= -->
+  <!-- DOCKER CONTAINER -->
+  <!-- ========================================================= -->
+
+  <rect x="245"
+        y="475"
         width="1110"
         height="240"
         rx="22"
-        fill="#0a1211"
-        stroke="#276b59"
-        stroke-width="1.5"/>
+        fill="#0A1211"
+        stroke="#35A985"
+        stroke-width="2"/>
 
-  <text x="800" y="510"
+
+  <text x="800"
+        y="510"
         text-anchor="middle"
-        class="label"
-        fill="#65d8b6">
+        font-family="Arial, Helvetica, sans-serif"
+        font-size="21"
+        font-weight="700"
+        fill="#65D8B6">
+
     Docker Container
+
   </text>
 
+
+  <!-- ========================================================= -->
   <!-- FASTAPI -->
-  <g>
-    <rect x="280" y="545"
-          width="210"
-          height="130"
-          rx="17"
-          class="node"
-          stroke="#35e0ae"/>
+  <!-- ========================================================= -->
 
-    <circle cx="385" cy="580"
-            r="21"
-            fill="#10352d"/>
+  <rect x="280"
+        y="545"
+        width="210"
+        height="130"
+        rx="17"
+        fill="#0B1513"
+        stroke="#35E0AE"
+        stroke-width="2"/>
 
-    <path d="M385 566l-8 20h10l-7 16 17-23h-11z"
-          fill="#35e0ae"/>
 
-    <text x="385" y="625"
-          text-anchor="middle"
-          class="label"
-          fill="#35e0ae">
-      FastAPI
-    </text>
+  <circle cx="385"
+          cy="580"
+          r="21"
+          fill="#10352D"/>
 
-    <text x="385" y="648"
-          text-anchor="middle"
-          class="tiny">
-      Receives • validates • responds
-    </text>
-  </g>
 
+  <path d="M385 566
+           L377 586
+           H387
+           L380 602
+           L397 579
+           H386
+           Z"
+        fill="#35E0AE"/>
+
+
+  <text x="385"
+        y="625"
+        text-anchor="middle"
+        font-family="Arial, Helvetica, sans-serif"
+        font-size="21"
+        font-weight="700"
+        fill="#35E0AE">
+
+    FastAPI
+
+  </text>
+
+
+  <text x="385"
+        y="648"
+        text-anchor="middle"
+        font-family="Arial, Helvetica, sans-serif"
+        font-size="13"
+        fill="#AAB6B2">
+
+    Receives • validates • responds
+
+  </text>
+
+
+  <!-- ========================================================= -->
   <!-- PANDAS -->
-  <g>
-    <rect x="535" y="545"
-          width="210"
-          height="130"
-          rx="17"
-          class="node"
-          stroke="#b477ff"/>
+  <!-- ========================================================= -->
 
-    <rect x="616" y="560"
-          width="48"
-          height="35"
-          fill="#1f1231"/>
+  <rect x="535"
+        y="545"
+        width="210"
+        height="130"
+        rx="17"
+        fill="#0B1513"
+        stroke="#B477FF"
+        stroke-width="2"/>
 
-    <path d="M624 587v-15
-             M638 587v-22
-             M652 587v-10"
-          stroke="#c59cff"
-          stroke-width="5"/>
 
-    <text x="640" y="625"
-          text-anchor="middle"
-          class="label"
-          fill="#c59cff">
-      Pandas
-    </text>
+  <rect x="616"
+        y="560"
+        width="48"
+        height="35"
+        fill="#241536"/>
 
-    <text x="640" y="648"
-          text-anchor="middle"
-          class="tiny">
-      Cleans • transforms • prepares
-    </text>
-  </g>
 
-  <!-- SCIKIT -->
-  <g>
-    <rect x="790" y="545"
-          width="210"
-          height="130"
-          rx="17"
-          class="node"
-          stroke="#ffad38"/>
+  <path d="M624 587 V572"
+        stroke="#D0A8FF"
+        stroke-width="5"/>
 
-    <circle cx="895" cy="580"
-            r="22"
-            fill="#35200b"/>
+  <path d="M638 587 V565"
+        stroke="#D0A8FF"
+        stroke-width="5"/>
 
-    <path d="M879 582h32
-             M884 573h22
-             M884 591h22"
-          stroke="#ffc76d"
-          stroke-width="3"/>
+  <path d="M652 587 V577"
+        stroke="#D0A8FF"
+        stroke-width="5"/>
 
-    <text x="895" y="625"
-          text-anchor="middle"
-          class="label"
-          fill="#ffc76d">
-      Scikit-learn
-    </text>
 
-    <text x="895" y="648"
-          text-anchor="middle"
-          class="tiny">
-      Trained model + pipeline
-    </text>
-  </g>
+  <text x="640"
+        y="625"
+        text-anchor="middle"
+        font-family="Arial, Helvetica, sans-serif"
+        font-size="21"
+        font-weight="700"
+        fill="#D0A8FF">
 
+    Pandas
+
+  </text>
+
+
+  <text x="640"
+        y="648"
+        text-anchor="middle"
+        font-family="Arial, Helvetica, sans-serif"
+        font-size="13"
+        fill="#AAB6B2">
+
+    Cleans • transforms • prepares
+
+  </text>
+
+
+  <!-- ========================================================= -->
+  <!-- SCIKIT LEARN -->
+  <!-- ========================================================= -->
+
+  <rect x="790"
+        y="545"
+        width="210"
+        height="130"
+        rx="17"
+        fill="#0B1513"
+        stroke="#FFB340"
+        stroke-width="2"/>
+
+
+  <circle cx="895"
+          cy="580"
+          r="22"
+          fill="#36210B"/>
+
+
+  <path d="M879 582 H911"
+        stroke="#FFC86F"
+        stroke-width="3"/>
+
+  <path d="M884 573 H906"
+        stroke="#FFC86F"
+        stroke-width="3"/>
+
+  <path d="M884 591 H906"
+        stroke="#FFC86F"
+        stroke-width="3"/>
+
+
+  <text x="895"
+        y="625"
+        text-anchor="middle"
+        font-family="Arial, Helvetica, sans-serif"
+        font-size="21"
+        font-weight="700"
+        fill="#FFC86F">
+
+    Scikit-learn
+
+  </text>
+
+
+  <text x="895"
+        y="648"
+        text-anchor="middle"
+        font-family="Arial, Helvetica, sans-serif"
+        font-size="13"
+        fill="#AAB6B2">
+
+    Trained model + pipeline
+
+  </text>
+
+
+  <!-- ========================================================= -->
   <!-- PREDICTION -->
-  <g class="pulse">
-    <rect x="1045" y="545"
-          width="260"
-          height="130"
-          rx="17"
-          class="node"
-          stroke="#35e0ae"/>
+  <!-- ========================================================= -->
 
-    <circle cx="1175" cy="580"
-            r="22"
-            fill="#10352d"/>
+  <rect x="1045"
+        y="545"
+        width="260"
+        height="130"
+        rx="17"
+        fill="#0B1513"
+        stroke="#35E0AE"
+        stroke-width="2"/>
 
-    <path d="M1160 582q15-30 30 0q15-30 30 0
-             M1165 590q10 12 20 0q10 12 20 0"
-          fill="none"
-          stroke="#35e0ae"
-          stroke-width="3"/>
 
-    <text x="1175" y="625"
-          text-anchor="middle"
-          class="label"
-          fill="#35e0ae">
-      Prediction
-    </text>
+  <circle cx="1175"
+          cy="580"
+          r="22"
+          fill="#10352D"/>
 
-    <text x="1175" y="648"
-          text-anchor="middle"
-          class="tiny">
-      Mental Health Score • 0–10
-    </text>
-  </g>
 
-  <!-- INTERNAL FLOWS -->
+  <path d="M1160 582
+           Q1175 552 1190 582
+           Q1205 552 1220 582"
+        fill="none"
+        stroke="#35E0AE"
+        stroke-width="3"/>
+
+
+  <path d="M1165 590
+           Q1175 602 1185 590
+           Q1195 602 1205 590"
+        fill="none"
+        stroke="#35E0AE"
+        stroke-width="3"/>
+
+
+  <text x="1175"
+        y="625"
+        text-anchor="middle"
+        font-family="Arial, Helvetica, sans-serif"
+        font-size="21"
+        font-weight="700"
+        fill="#35E0AE">
+
+    Prediction
+
+  </text>
+
+
+  <text x="1175"
+        y="648"
+        text-anchor="middle"
+        font-family="Arial, Helvetica, sans-serif"
+        font-size="13"
+        fill="#AAB6B2">
+
+    Mental Health Score • 0–10
+
+  </text>
+
+
+  <!-- ========================================================= -->
+  <!-- INTERNAL FLOW -->
+  <!-- ========================================================= -->
+
   <path d="M490 610 H535"
-        class="flow dash"
-        stroke="#35e0ae"
-        marker-end="url(#arrowMint)"/>
+        fill="none"
+        stroke="#35E0AE"
+        stroke-width="3"
+        stroke-dasharray="9 12"
+        marker-end="url(#arrowGreen)"/>
+
 
   <path d="M745 610 H790"
-        class="flow dash"
-        stroke="#b477ff"
+        fill="none"
+        stroke="#B477FF"
+        stroke-width="3"
+        stroke-dasharray="9 12"
         marker-end="url(#arrowPurple)"/>
 
+
   <path d="M1000 610 H1045"
-        class="flow dash"
-        stroke="#ffad38"
+        fill="none"
+        stroke="#FFB340"
+        stroke-width="3"
+        stroke-dasharray="9 12"
         marker-end="url(#arrowOrange)"/>
 
-  <circle r="5" fill="#7af0c9">
+
+  <!-- Animated internal particles -->
+
+  <circle r="5"
+          fill="#7AF0C9">
+
     <animateMotion
-      dur="1.2s"
+      dur="1.1s"
       repeatCount="indefinite"
       path="M490 610 H535"/>
+
   </circle>
 
-  <circle r="5" fill="#c59cff">
+
+  <circle r="5"
+          fill="#D0A8FF">
+
     <animateMotion
-      dur="1.2s"
+      dur="1.1s"
       repeatCount="indefinite"
       path="M745 610 H790"/>
+
   </circle>
 
-  <circle r="5" fill="#ffc76d">
+
+  <circle r="5"
+          fill="#FFC86F">
+
     <animateMotion
-      dur="1.2s"
+      dur="1.1s"
       repeatCount="indefinite"
       path="M1000 610 H1045"/>
+
   </circle>
 
-  <!-- ECR IMAGE PULL -->
+
+  <!-- ========================================================= -->
+  <!-- ECR → LAMBDA IMAGE PULL -->
+  <!-- ========================================================= -->
+
   <path d="M1290 340
            V405
            H1120
            V475"
-        class="flow dashSlow"
-        stroke="#4da3ff"
-        marker-end="url(#arrowMint)"/>
+        fill="none"
+        stroke="#4DA3FF"
+        stroke-width="3"
+        stroke-dasharray="9 12"
+        marker-end="url(#arrowBlue)"/>
 
-  <text x="1190" y="390"
-        text-anchor="middle"
-        class="tiny"
-        fill="#6cb8ff">
-    Docker image pulled at execution
-  </text>
 
-  <!-- RESPONSE -->
-  <g class="score">
-    <rect x="1390" y="490"
-          width="175"
-          height="220"
-          rx="22"
-          fill="#0b1613"
-          stroke="#35e0ae"
-          stroke-width="2"/>
+  <circle r="5"
+          fill="#75BDFF"
+          filter="url(#glow)">
 
-    <text x="1477" y="525"
-          text-anchor="middle"
-          class="label"
-          fill="#35e0ae">
-      Response
-    </text>
-
-    <path d="M1425 585 A52 52 0 0 1 1529 585"
-          fill="none"
-          stroke="#1c4d40"
-          stroke-width="10"/>
-
-    <path d="M1425 585 A52 52 0 0 1 1512 552"
-          fill="none"
-          stroke="#35e0ae"
-          stroke-width="10"
-          stroke-linecap="round"/>
-
-    <text x="1477" y="635"
-          text-anchor="middle"
-          font="700 31px Arial, sans-serif"
-          fill="#7af0c9">
-      7.6<tspan font-size="14"> /10</tspan>
-    </text>
-
-    <text x="1477" y="666"
-          text-anchor="middle"
-          class="small">
-      Mental health signal
-    </text>
-
-    <text x="1477" y="692"
-          text-anchor="middle"
-          class="tiny">
-      Informational only
-    </text>
-  </g>
-
-  <!-- PREDICTION TO RESPONSE -->
-  <path d="M1305 610 H1390"
-        class="flow dash"
-        stroke="#35e0ae"
-        marker-end="url(#arrowMint)"/>
-
-  <circle r="6" fill="#7af0c9" filter="url(#glow)">
     <animateMotion
-      dur="1.5s"
+      dur="2.4s"
       repeatCount="indefinite"
-      path="M1305 610 H1390"/>
+      path="M1290 340 V405 H1120 V475"/>
+
   </circle>
 
-  <!-- RESPONSE BACK TO USER -->
-  <path d="M1390 705
-           C1150 820 500 820 300 340"
-        class="flow dashSlow"
-        stroke="#35e0ae"
-        opacity=".55"
-        marker-end="url(#arrowMint)"/>
 
-  <text x="800" y="808"
+  <text x="1190"
+        y="390"
         text-anchor="middle"
-        class="tiny">
-    HTTPS response returned to the browser
+        font-family="Arial, Helvetica, sans-serif"
+        font-size="13"
+        fill="#75BDFF">
+
+    Docker image pulled at execution
+
   </text>
 
+
+  <!-- ========================================================= -->
+  <!-- RESPONSE CARD -->
+  <!-- ========================================================= -->
+
+  <rect x="1390"
+        y="490"
+        width="175"
+        height="220"
+        rx="22"
+        fill="#0B1613"
+        stroke="#35E0AE"
+        stroke-width="2"/>
+
+
+  <text x="1477"
+        y="525"
+        text-anchor="middle"
+        font-family="Arial, Helvetica, sans-serif"
+        font-size="21"
+        font-weight="700"
+        fill="#35E0AE">
+
+    Response
+
+  </text>
+
+
+  <!-- Score gauge -->
+
+  <path d="M1425 585
+           A52 52 0 0 1 1529 585"
+        fill="none"
+        stroke="#1C4D40"
+        stroke-width="10"/>
+
+
+  <path d="M1425 585
+           A52 52 0 0 1 1512 552"
+        fill="none"
+        stroke="#35E0AE"
+        stroke-width="10"
+        stroke-linecap="round"/>
+
+
+  <text x="1477"
+        y="635"
+        text-anchor="middle"
+        font-family="Arial, Helvetica, sans-serif"
+        font-size="31"
+        font-weight="700"
+        fill="#7AF0C9">
+
+    7.6<tspan font-size="14"> /10</tspan>
+
+  </text>
+
+
+  <text x="1477"
+        y="666"
+        text-anchor="middle"
+        font-family="Arial, Helvetica, sans-serif"
+        font-size="14"
+        fill="#AAB6B2">
+
+    Mental health signal
+
+  </text>
+
+
+  <text x="1477"
+        y="692"
+        text-anchor="middle"
+        font-family="Arial, Helvetica, sans-serif"
+        font-size="12"
+        fill="#84928D">
+
+    Informational only
+
+  </text>
+
+
+  <!-- Prediction → Response -->
+
+  <path d="M1305 610 H1390"
+        fill="none"
+        stroke="#35E0AE"
+        stroke-width="3"
+        stroke-dasharray="9 12"
+        marker-end="url(#arrowGreen)"/>
+
+
+  <circle r="6"
+          fill="#7AF0C9"
+          filter="url(#glow)">
+
+    <animateMotion
+      dur="1.4s"
+      repeatCount="indefinite"
+      path="M1305 610 H1390"/>
+
+  </circle>
+
+
+  <!-- ========================================================= -->
+  <!-- RESPONSE → USER -->
+  <!-- ========================================================= -->
+
+  <path d="M1390 705
+           C1150 820
+           500 820
+           300 340"
+        fill="none"
+        stroke="#35E0AE"
+        stroke-opacity="0.5"
+        stroke-width="3"
+        stroke-dasharray="9 12"
+        marker-end="url(#arrowGreen)"/>
+
+
+  <circle r="5"
+          fill="#7AF0C9"
+          opacity="0.8">
+
+    <animateMotion
+      dur="4s"
+      repeatCount="indefinite"
+      path="M1390 705 C1150 820 500 820 300 340"/>
+
+  </circle>
+
+
+  <text x="800"
+        y="808"
+        text-anchor="middle"
+        font-family="Arial, Helvetica, sans-serif"
+        font-size="13"
+        fill="#84928D">
+
+    HTTPS response returned to browser
+
+  </text>
+
+
+  <!-- ========================================================= -->
   <!-- BENEFITS -->
-  <rect x="80" y="865"
+  <!-- ========================================================= -->
+
+  <rect x="80"
+        y="865"
         width="1440"
         height="95"
         rx="22"
-        fill="#0b1211"
-        stroke="#273936"/>
+        fill="#0B1211"
+        stroke="#273936"
+        stroke-width="1.5"/>
 
-  <text x="800" y="893"
+
+  <text x="800"
+        y="893"
         text-anchor="middle"
-        class="label"
-        fill="#e9f3ef">
+        font-family="Arial, Helvetica, sans-serif"
+        font-size="20"
+        font-weight="700"
+        fill="#E9F3EF">
+
     Why this architecture?
+
   </text>
 
-  <g transform="translate(135,915)">
-    <text x="0" y="0" class="small" fill="#35e0ae">
-      ● Serverless
-    </text>
-    <text x="0" y="24" class="tiny">
-      Scale to zero
-    </text>
 
-    <text x="270" y="0" class="small" fill="#ffbd55">
-      ● Cost efficient
-    </text>
-    <text x="270" y="24" class="tiny">
-      Pay per request
-    </text>
+  <!-- Benefit 1 -->
 
-    <text x="560" y="0" class="small" fill="#b477ff">
-      ● Secure
-    </text>
-    <text x="560" y="24" class="tiny">
-      HTTPS + private ECR
-    </text>
+  <text x="135"
+        y="925"
+        font-family="Arial, Helvetica, sans-serif"
+        font-size="15"
+        fill="#35E0AE">
 
-    <text x="790" y="0" class="small" fill="#4da3ff">
-      ● Scalable
-    </text>
-    <text x="790" y="24" class="tiny">
-      AWS managed scaling
-    </text>
+    ● Serverless
 
-    <text x="1080" y="0" class="small" fill="#35e0ae">
-      ● Fast
-    </text>
-    <text x="1080" y="24" class="tiny">
-      Real-time inference
-    </text>
-  </g>
+  </text>
 
-  <title>Mental Health Signal — Dynamic AWS Serverless ML Architecture</title>
+  <text x="135"
+        y="947"
+        font-family="Arial, Helvetica, sans-serif"
+        font-size="13"
+        fill="#84928D">
+
+    Scale to zero
+
+  </text>
+
+
+  <!-- Benefit 2 -->
+
+  <text x="405"
+        y="925"
+        font-family="Arial, Helvetica, sans-serif"
+        font-size="15"
+        fill="#FFC86F">
+
+    ● Cost efficient
+
+  </text>
+
+  <text x="405"
+        y="947"
+        font-family="Arial, Helvetica, sans-serif"
+        font-size="13"
+        fill="#84928D">
+
+    Pay per request
+
+  </text>
+
+
+  <!-- Benefit 3 -->
+
+  <text x="690"
+        y="925"
+        font-family="Arial, Helvetica, sans-serif"
+        font-size="15"
+        fill="#D0A8FF">
+
+    ● Secure
+
+  </text>
+
+  <text x="690"
+        y="947"
+        font-family="Arial, Helvetica, sans-serif"
+        font-size="13"
+        fill="#84928D">
+
+    HTTPS + private ECR
+
+  </text>
+
+
+  <!-- Benefit 4 -->
+
+  <text x="925"
+        y="925"
+        font-family="Arial, Helvetica, sans-serif"
+        font-size="15"
+        fill="#75BDFF">
+
+    ● Scalable
+
+  </text>
+
+  <text x="925"
+        y="947"
+        font-family="Arial, Helvetica, sans-serif"
+        font-size="13"
+        fill="#84928D">
+
+    AWS managed scaling
+
+  </text>
+
+
+  <!-- Benefit 5 -->
+
+  <text x="1200"
+        y="925"
+        font-family="Arial, Helvetica, sans-serif"
+        font-size="15"
+        fill="#35E0AE">
+
+    ● Fast
+
+  </text>
+
+  <text x="1200"
+        y="947"
+        font-family="Arial, Helvetica, sans-serif"
+        font-size="13"
+        fill="#84928D">
+
+    Real-time inference
+
+  </text>
+
+
+  <!-- ========================================================= -->
+  <!-- ACCESSIBILITY / METADATA -->
+  <!-- ========================================================= -->
+
+  <title>
+    Mental Health Signal — AWS Serverless Machine Learning Architecture
+  </title>
 
   <desc>
-    Animated SVG architecture showing User,
-    Lambda Function URL,
-    AWS Lambda,
-    Amazon ECR,
-    Docker,
-    FastAPI,
-    Pandas,
-    Scikit-learn,
-    prediction,
-    and HTTPS response.
+    Architecture diagram for a Mental Health Score machine learning
+    application. A user submits a wellness form through a browser.
+    The request reaches an AWS Lambda Function URL, invokes AWS Lambda,
+    and executes a Docker container containing FastAPI, Pandas and
+    Scikit-learn. The trained machine learning pipeline produces a
+    mental health score and returns the result to the browser.
   </desc>
 
 </svg>
